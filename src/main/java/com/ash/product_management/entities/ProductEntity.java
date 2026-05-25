@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
         @Index(name = "idx_title_price" , columnList = "title , price")
  }
 )
-public class Product {
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
