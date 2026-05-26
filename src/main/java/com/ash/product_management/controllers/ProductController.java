@@ -2,11 +2,10 @@ package com.ash.product_management.controllers;
 
 import com.ash.product_management.entities.ProductEntity;
 import com.ash.product_management.repositories.ProductRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +19,17 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<ProductEntity> getAllBySorting () {
-        Sort sort = Sort.by("id").descending();
+    public List<ProductEntity> getAllBySorting (@RequestParam(defaultValue = "id") String sortBy) {
+//        Sort sort = Sort.by(sortBy).descending();
+//        Sort sort = Sort.by("firstname").ascending()
+//                .and(Sort.by("lastname").descending());
+        Sort sort = Sort.by(Sort.Direction.DESC , sortBy , "price" , "title");
         return productRepository.findBy(sort);
+    }
+
+    @GetMapping("/list1")
+    public List<ProductEntity> getAllByPagination(@RequestParam(defaultValue = "id") String sortBy) {
+        Pageable pageable = Pageable.getOffset();
+        return productRepository.findBy(pageable);
     }
 }

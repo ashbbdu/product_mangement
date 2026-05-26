@@ -30,4 +30,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity , Long> {
     Long countByTitle(String title);
 
     List<ProductEntity> findBy(Sort sort);
+
+    List<ProductEntity> findBy(Pageable pageable);
 }
