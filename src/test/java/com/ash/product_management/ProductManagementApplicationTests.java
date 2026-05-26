@@ -5,6 +5,7 @@ import com.ash.product_management.repositories.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -88,5 +89,24 @@ class ProductManagementApplicationTests {
 			System.out.println(l);
 		}
 	}
+
+	@Test
+	void findByTitleAndPrice () {
+		ProductEntity product = productRepository.findByTitleAndPrice("iPhone 15" ,new BigDecimal("59999.99") );
+		System.out.println(product);
+	}
+
+	@Test
+	void findByTitleAndPrice1 () {
+		ProductEntity product = productRepository.findByTitleAndPrice1("iPhone 15" ,new BigDecimal("59999.99") );
+		System.out.println(product);
+	}
+
+	@Test
+	void countAll () {
+		Long count  = productRepository.countByTitle("MacBook Air M3");
+		System.out.println(count);
+	}
+
 
 }
