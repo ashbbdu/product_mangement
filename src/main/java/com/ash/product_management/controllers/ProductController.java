@@ -29,7 +29,7 @@ public class ProductController {
 
     @GetMapping("/list1")
     public List<ProductEntity> getAllByPagination(@RequestParam(defaultValue = "id") String sortBy) {
-        Pageable pageable = Pageable.getOffset();
+        Pageable pageable = Pageable.ofSize(1);
         return productRepository.findBy(pageable);
     }
 }
