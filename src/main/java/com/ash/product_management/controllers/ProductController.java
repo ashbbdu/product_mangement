@@ -29,6 +29,7 @@ public class ProductController {
 
     @GetMapping("/list1")
     public List<ProductEntity> getAllByPagination(@RequestParam(defaultValue = "id") String sortBy) {
+//        pageable branch
         Pageable pageable = Pageable.ofSize(1);
         return productRepository.findBy(pageable);
     }
