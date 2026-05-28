@@ -1,5 +1,6 @@
 package com.ash.product_management.repositories;
 
+import com.ash.product_management.dtos.IProductListing;
 import com.ash.product_management.entities.ProductEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,4 +34,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity , Long> {
     List<ProductEntity> findBy(Sort sort);
 
     Page<ProductEntity> findAll(Pageable pageable);
+
+//    Projection
+    @Query("select p.title as title , p.quantity as quantity from ProductEntity p")
+    List<IProductListing> findAllData();
 }

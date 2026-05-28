@@ -1,5 +1,6 @@
 package com.ash.product_management.controllers;
 
+import com.ash.product_management.dtos.IProductListing;
 import com.ash.product_management.entities.ProductEntity;
 import com.ash.product_management.repositories.ProductRepository;
 import org.springframework.data.domain.Page;
@@ -38,5 +39,12 @@ public class ProductController {
         Pageable pageable = PageRequest.of(0 , PAGE_SIZE , sort);
 
         return productRepository.findAll(pageable);
+    }
+
+
+
+    @GetMapping("/list2")
+    public List<IProductListing> getAllProjection() {
+        return productRepository.findAllData();
     }
 }
