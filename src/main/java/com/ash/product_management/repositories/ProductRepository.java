@@ -1,6 +1,7 @@
 package com.ash.product_management.repositories;
 
 import com.ash.product_management.entities.ProductEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,5 +32,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity , Long> {
 
     List<ProductEntity> findBy(Sort sort);
 
-    List<ProductEntity> findBy(Pageable pageable);
+    Page<ProductEntity> findAll(Pageable pageable);
 }
